@@ -38,6 +38,15 @@
                 console.log("执行了减法操作");
                 this.counter--;
             }
+        },
+        beforeCreate:function(){
+            console.log("before create")
+        },
+        created:function () {
+            console.log("created!")
+        },
+        mounted:function () {
+            console.log("mounted!")
         }
     })
 </script>
