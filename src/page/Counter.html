@@ -13,14 +13,22 @@
     <!--way two-->
     <button v-on:click="add">+</button>
     <button v-on:click="sub">-</button>
+    <!--way three:语法糖-->
+    <!--<button @click="add">+</button>-->
 </div>
 <script src="../js/vue.js"></script>
 <script>
+    const obj = {
+        counter:0
+    }
     const app = new Vue({
         el:'#app',
-        data:{
+        /*el:document.querySelector()*/
+        /*data 也可以传递组件函数*/
+        data:obj
+        /*data:{
             counter : 0
-        },
+        }*/,
         methods:{
             add:function () {
                 console.log("执行了加法操作");
