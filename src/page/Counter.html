@@ -1,54 +1,54 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <title>计数器</title>
+  <meta charset="UTF-8">
+  <title>计数器</title>
 </head>
 <body>
 <div id="app">
-    <h2>当前计数：{{counter}}</h2>
-    <!--way one-->
-    <!--<button v-on:click="counter++">+</button>
-    <button v-on:click="counter&#45;&#45;">-</button>-->
-    <!--way two-->
-    <button v-on:click="add">+</button>
-    <button v-on:click="sub">-</button>
-    <!--way three:语法糖-->
-    <!--<button @click="add">+</button>-->
+  <h2>当前计数：{{counter}}</h2>
+  <!--way one-->
+  <!--<button v-on:click="counter++">+</button>
+  <button v-on:click="counter&#45;&#45;">-</button>-->
+  <!--way two-->
+  <button v-on:click="add">+</button>
+  <button v-on:click="sub">-</button>
+  <!--way three:语法糖-->
+  <!--<button @click="add">+</button>-->
 </div>
 <script src="../js/vue.js"></script>
 <script>
-    const obj = {
-        counter:0
+  const obj = {
+    counter: 0
+  }
+  const app = new Vue({
+    el: '#app',
+    /*el:document.querySelector()*/
+    /*data 也可以传递组件函数*/
+    data: obj
+    /*data:{
+        counter : 0
+    }*/,
+    methods: {
+      add: function () {
+        console.log("执行了加法操作");
+        this.counter++;
+      },
+      sub: function () {
+        console.log("执行了减法操作");
+        this.counter--;
+      }
+    },
+    beforeCreate: function () {
+      console.log("before create")
+    },
+    created: function () {
+      console.log("created!")
+    },
+    mounted: function () {
+      console.log("mounted!")
     }
-    const app = new Vue({
-        el:'#app',
-        /*el:document.querySelector()*/
-        /*data 也可以传递组件函数*/
-        data:obj
-        /*data:{
-            counter : 0
-        }*/,
-        methods:{
-            add:function () {
-                console.log("执行了加法操作");
-                this.counter++;
-            },
-            sub:function () {
-                console.log("执行了减法操作");
-                this.counter--;
-            }
-        },
-        beforeCreate:function(){
-            console.log("before create")
-        },
-        created:function () {
-            console.log("created!")
-        },
-        mounted:function () {
-            console.log("mounted!")
-        }
-    })
+  })
 </script>
 </body>
 </html>

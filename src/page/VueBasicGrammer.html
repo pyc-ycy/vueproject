@@ -1,46 +1,91 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <title>Vue 基本语法</title>
+  <meta charset="UTF-8">
+  <title>Vue 基本语法</title>
 </head>
 <body>
 <div id="app">
-    <h2>条件判断语句：v-if, v-else-if, v-else</h2>
-    <h3 v-if="type === 'A'">A</h3>
-    <h3 v-else-if="type === 'B'">B</h3>
-    <h3 v-else-if="type === 'C'">C</h3>
-    <h3 v-else>Not A/B/C</h3>
-    <h2>v-show 指令，可以根据条件的布尔值来展示元素</h2>
-    <h3 v-show="cond">根据cond的布尔值决定是否展示这段文字。</h3>
-    <h2>v-for 循环语句</h2>
-    <h3>基本用法：</h3>
-    <ol>
-        <li v-for="movie in movies">片名：{{movie.name}}，上映年份：{{movie.time}}</li>
-    </ol>
-    <h3>在 template 模板中使用</h3>
-    <ul>
-        <template v-for="movie in movies">
-            <li>片名：{{movie.name}}，上映年份：{{movie.time}}</li>
-            <li>*******************************</li>
-        </template>
-    </ul>
+  <h2>条件判断语句：v-if, v-else-if, v-else</h2>
+  <h3 v-if="type === 'A'">A</h3>
+  <h3 v-else-if="type === 'B'">B</h3>
+  <h3 v-else-if="type === 'C'">C</h3>
+  <h3 v-else>Not A/B/C</h3>
+  <h2>v-show 指令，可以根据条件的布尔值来展示元素</h2>
+  <h3 v-show="cond">根据cond的布尔值决定是否展示这段文字。</h3>
+  <h2>v-for 循环语句</h2>
+  <h3>基本用法：</h3>
+  <ol>
+    <li v-for="movie in movies">片名：{{movie.name}}，上映年份：{{movie.time}}</li>
+  </ol>
+  <h3>在 template 模板中使用</h3>
+  <ul>
+    <template v-for="movie in movies">
+      <li>片名：{{movie.name}}，上映年份：{{movie.time}}</li>
+      <li>*******************************</li>
+    </template>
+  </ul>
+  <h3>v-for 也可用作Object的迭代器</h3>
+  <h4>方式1：</h4>
+  <ul>
+    <li v-for="value in object">{{value}}</li>
+  </ul>
+  <h4>方式2</h4>
+  <ul>
+    <li v-for="(value,key) in object">{{key}}:{{value}}</li>
+  </ul>
+  <h4>方式3</h4>
+  <ul>
+    <li v-for="(value,key,index) in object">{{index}}.{{key}}:{{value}}</li>
+  </ul>
+  <h3>v-for 还可以迭代整数</h3>
+  <ul>
+    <li v-for="n in 5">{{n}}</li>
+  </ul>
+  <h2>利用 computed 属性反转字符串</h2>
+  <h4>原始字符串：{{message}}</h4><h4>计算后反转字符串：{{reverseMessage}}</h4>
+  <h3>computed 属性默认只提供getter，但运行开发者添加setter</h3>
+  <h4>{{site}}</h4>
 </div>
 <script src="../js/vue.js"></script>
 <script>
-    const app = new Vue({
-        el:'#app',
-        data:{
-            type:'D',
-            cond:true,
-            movies:[
-                {name:'黑客帝国',time:'2016'},
-                {name:'信条',time:'2020'},
-                {name:'盗梦空间',time:'2008'},
-                {name:'星际穿越',time:'2017'}
-            ],
+  const obj = {name: '御承扬', age: '22', profession: '信息与计算科学'};
+  const app = new Vue({
+    el: '#app',
+    data: {
+      type: 'D',
+      cond: true,
+      movies: [
+        {name: '黑客帝国', time: '2016'},
+        {name: '信条', time: '2020'},
+        {name: '盗梦空间', time: '2008'},
+        {name: '星际穿越', time: '2017'}
+      ],
+      object: obj,
+      message: 'pyc-ycy',
+      name: 'C S D N 博客',
+      url: 'https://blog.csdn.net/qq_42896653',
+    },
+    computed: {
+      reverseMessage: function () {
+        return this.message.split('').reverse().join('');
+      },
+      site: {
+        get: function () {
+          return this.name + ' ' + this.url;
         },
-    })
+        set: function (newValue) {
+          let names = newValue.split(' ');
+          this.name = names[0];
+          this.url = names[names.length - 1];
+        }
+      }
+    }
+  })
+  app.site = '菜鸟教程 http://www.runbood.com';
+  document.write('name: ' + app.name);
+  document.write('<br>');
+  document.write('url :' + app.url);
 </script>
 </body>
 </html>

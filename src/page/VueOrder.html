@@ -1,79 +1,79 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <title>Vue 的模板指令</title>
-    <style>
-        .class1{
-            background: #444;
-            color: #eee;
-        }
-    </style>
+  <meta charset="UTF-8">
+  <title>Vue 的模板指令</title>
+  <style>
+    .class1 {
+      background: #444;
+      color: #eee;
+    }
+  </style>
 </head>
 <body>
 <div id="app">
-    <h2>使用文本插值法：</h2>
-    <p>{{text01}}</p>
-    <h2>使用 v-html指令</h2>
-    <div v-html="text02"></div>
-    <h2>使用 v-bind 指令</h2>
-    <label for="r1">修改颜色</label><input type="checkbox" v-model="use" id="r1">
-    <br><br>
-    <div v-bind:class="{'class1':use}">
-        v-bind:class 指令
-    </div>
-    <h2>Javascript表达式</h2>
-    <h3>
-        {{5+5}}<br>
-        {{ok ? 'Yes' : 'NO'}}<br>
-        {{text03.split('').reverse().join('')}}<br>
-    </h3>
-    <div v-bind:id="'list-'+id">Vue教程学习</div>
-    <h2>v-if 指令</h2>
-    <p v-if="seen">你将看到这段文字</p>
-    <h2>v-bind:href</h2>
-    <pre><a v-bind:href="url" target="_blank">我的博客</a> </pre>
-    <h2>用户输入</h2>
-    <h3>{{input_message}}</h3>
-    <label>
-        <input type="text" v-model="input_message">
-    </label>
-    <h2>翻转字符串</h2>
-    <h3>{{reverse_message}}</h3>
-    <button v-on:click="reverseMessage">翻转字符串</button>
-    <h2>过滤器</h2>
-    <h3>{{filter_message | capitalize}}</h3>
+  <h2>使用文本插值法：</h2>
+  <p>{{text01}}</p>
+  <h2>使用 v-html指令</h2>
+  <div v-html="text02"></div>
+  <h2>使用 v-bind 指令</h2>
+  <label for="r1">修改颜色</label><input type="checkbox" v-model="use" id="r1">
+  <br><br>
+  <div v-bind:class="{'class1':use}">
+    v-bind:class 指令
+  </div>
+  <h2>Javascript表达式</h2>
+  <h3>
+    {{5+5}}<br>
+    {{ok ? 'Yes' : 'NO'}}<br>
+    {{text03.split('').reverse().join('')}}<br>
+  </h3>
+  <div v-bind:id="'list-'+id">Vue教程学习</div>
+  <h2>v-if 指令</h2>
+  <p v-if="seen">你将看到这段文字</p>
+  <h2>v-bind:href</h2>
+  <pre><a v-bind:href="url" target="_blank">我的博客</a> </pre>
+  <h2>用户输入</h2>
+  <h3>{{input_message}}</h3>
+  <label>
+    <input type="text" v-model="input_message">
+  </label>
+  <h2>翻转字符串</h2>
+  <h3>{{reverse_message}}</h3>
+  <button v-on:click="reverseMessage">翻转字符串</button>
+  <h2>过滤器</h2>
+  <h3>{{filter_message | capitalize}}</h3>
 </div>
 <script src="../js/vue.js"></script>
 <script>
-    const app = new Vue({
-        el:'#app',
-        data:{
-            text01:"使用文本插值法添加的内容！",
-            text02:'<h2>御承扬</h2>',
-            use:false,
-            ok:true,
-            text03:'御承扬即彭友聪',
-            id:1,
-            seen:true,
-            url:'https://blog.csdn.net/qq_42896653',
-            input_message:'用户输入数据测试',
-            reverse_message:'翻转字符串显示文字',
-            filter_message:'Only in hardworking, can the goal of life be true instead of just dream',
-        },
-        filters:{
-            capitalize: function (value) {
-                if (!value) return ''
-                value = value.toString()
-                return value.charAt(0).toUpperCase() + value.slice(1)
-            }
-        },
-        methods:{
-            reverseMessage:function () {
-                this.reverse_message = this.reverse_message.split('').reverse().join('')
-            }
-        },
-    });
+  const app = new Vue({
+    el: '#app',
+    data: {
+      text01: "使用文本插值法添加的内容！",
+      text02: '<h2>御承扬</h2>',
+      use: false,
+      ok: true,
+      text03: '御承扬即彭友聪',
+      id: 1,
+      seen: true,
+      url: 'https://blog.csdn.net/qq_42896653',
+      input_message: '用户输入数据测试',
+      reverse_message: '翻转字符串显示文字',
+      filter_message: 'Only in hardworking, can the goal of life be true instead of just dream',
+    },
+    filters: {
+      capitalize: function (value) {
+        if (!value) return ''
+        value = value.toString()
+        return value.charAt(0).toUpperCase() + value.slice(1)
+      }
+    },
+    methods: {
+      reverseMessage: function () {
+        this.reverse_message = this.reverse_message.split('').reverse().join('')
+      }
+    },
+  });
 </script>
 </body>
 </html>
