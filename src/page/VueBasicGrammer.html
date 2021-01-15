@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Vue 基本语法</title>
+</head>
+<body>
+<div id="app">
+    <h2>条件判断语句：v-if, v-else-if, v-else</h2>
+    <h3 v-if="type === 'A'">A</h3>
+    <h3 v-else-if="type === 'B'">B</h3>
+    <h3 v-else-if="type === 'C'">C</h3>
+    <h3 v-else>Not A/B/C</h3>
+    <h2>v-show 指令，可以根据条件的布尔值来展示元素</h2>
+    <h3 v-show="cond">根据cond的布尔值决定是否展示这段文字。</h3>
+    <h2>v-for 循环语句</h2>
+    <h3>基本用法：</h3>
+    <ol>
+        <li v-for="movie in movies">片名：{{movie.name}}，上映年份：{{movie.time}}</li>
+    </ol>
+    <h3>在 template 模板中使用</h3>
+    <ul>
+        <template v-for="movie in movies">
+            <li>片名：{{movie.name}}，上映年份：{{movie.time}}</li>
+            <li>*******************************</li>
+        </template>
+    </ul>
+</div>
+<script src="../js/vue.js"></script>
+<script>
+    const app = new Vue({
+        el:'#app',
+        data:{
+            type:'D',
+            cond:true,
+            movies:[
+                {name:'黑客帝国',time:'2016'},
+                {name:'信条',time:'2020'},
+                {name:'盗梦空间',time:'2008'},
+                {name:'星际穿越',time:'2017'}
+            ],
+        },
+    })
+</script>
+</body>
+</html>
