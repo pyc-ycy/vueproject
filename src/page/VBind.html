@@ -10,6 +10,9 @@
     .big-font{
       font-size: 24px;
     }
+    .line{
+      text-decoration: underline;
+    }
   </style>
 </head>
 <body>
@@ -30,9 +33,11 @@
   <!--<h4 :class="{类名1:bool,...}">测试文本2</h4>-->
   <!--对象语法-->
   <h4 class="big-font" :class="{active:isActive,line:false}">测试文本2</h4>
+  <h4 class="big-font" :class="getClasses()">测试文本2</h4>
   <button v-on:click="btnClick">改变上面文本的颜色</button>
   <!--数组语法-->
-
+  <h2 class="big-font" :class="['active','line']">测试文本3</h2>
+  <!--当样式是从服务器请求，并且比较多，可以采用上述形式-->
 </div>
 <script src="../js/vue.js"></script>
 <script>
@@ -49,6 +54,9 @@
     methods:{
       btnClick:function () {
         this.isActive=!this.isActive;
+      },
+      getClasses:function () {
+        return {active:this.isActive};
       }
     }
   })
