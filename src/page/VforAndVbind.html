@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>V-for结合V-bind的使用</title>
+  <style>
+    .active{
+      color: red;
+      font-size: 24px;
+    }
+  </style>
+</head>
+<body>
+<div id="app">
+  <h2>{{message}}</h2>
+  <h2>{{author}}</h2>
+  <h2>下面的列表结合v-for和v-bind指令</h2>
+  <ul>
+    <li v-for="item in movies" v-on:click="setClass()">
+      <a href="#" v-on:click="setClass()" :hover="setClass()">{{item}}</a>
+    </li>
+  </ul>
+</div>
+<script src="../js/vue.js"></script>
+<script>
+  const app = new Vue({
+    el: '#app',
+    data: {
+      message: 'Hello',
+      author: '彭友聪',
+      movies: ['星际穿越', '大话西游', '神奇女侠', '黑客帝国'],
+      active:'active'
+    },
+    methods:{
+      setClass:function () {
+        return this.active;
+      }
+    }
+  })
+</script>
+</body>
+</html>
